@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import { FiTrash } from "react-icons/fi";
+import { TbTransferVertical } from "react-icons/tb";
+import { FiDownload } from "react-icons/fi";
+
 import { toJpeg } from "html-to-image";
 import type { PositionDataType } from "react-chessboard";
 
@@ -45,31 +49,32 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
       <div className="flex flex-col gap-2 bg-neutral-800 p-2">
         <button
           type="button"
-          className="transition-default w-full bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
+          className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
           onClick={() => setPosition({})}
         >
-          Clear
+          Clear Board <FiTrash className="text-[1.1em]" />
         </button>
 
         <button
           type="button"
-          className="transition-default w-full bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
+          className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
           onClick={() =>
             setOrientation((current) =>
               current === "white" ? "black" : "white",
             )
           }
         >
-          Flip
+          Flip Board <TbTransferVertical className="text-[1.2em]" />
         </button>
 
         <button
           disabled={isExporting}
-          className="transition-default w-full bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
+          className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
           onClick={exportPng}
           type="button"
         >
-          {isExporting ? "Rendering…" : "Export PNG"}
+          {isExporting ? "Rendering…" : "Export JPEG"}{" "}
+          <FiDownload className="text-[1.1em]" />
         </button>
       </div>
     </aside>

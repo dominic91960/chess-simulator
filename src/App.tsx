@@ -8,11 +8,12 @@ import {
 } from "react-chessboard";
 
 import DragMenu from "./components/DragMenu";
-import ButtonArea from "./components/ButtonArea";
 import BoardArea from "./components/BoardArea";
+import ButtonArea from "./components/ButtonArea";
+import { STARTING_POSITION } from "./lib/constants";
 
 function App() {
-  const [position, setPosition] = useState<PositionDataType>({});
+  const [position, setPosition] = useState<PositionDataType>(STARTING_POSITION);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
 
   const snapshotRef = useRef<HTMLDivElement>(null);
