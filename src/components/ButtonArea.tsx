@@ -26,9 +26,9 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
       await document.fonts.ready;
 
       const dataUrl = await toJpeg(node, {
-        pixelRatio: 1,
+        pixelRatio: 4,
         cacheBust: true,
-        backgroundColor: "#f5f1e8",
+        backgroundColor: "#262626 ",
       });
 
       const link = document.createElement("a");
@@ -41,7 +41,7 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
   };
 
   return (
-    <aside className="sticky top-3 bg-amber-300 sm:top-3 md:top-4 lg:top-4 lg:h-fit xl:top-5 2xl:top-6">
+    <aside className="sticky top-3 sm:top-3 md:top-4 lg:top-4 lg:h-fit xl:top-5 2xl:top-6">
       <div className="flex flex-col gap-2 bg-neutral-800 p-2">
         <button
           type="button"

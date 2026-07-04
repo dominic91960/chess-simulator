@@ -1,6 +1,6 @@
 const LetterNotations = () => {
   return (
-    <div className="me-[1.5ch] grid grid-cols-8 text-center">
+    <div className="mx-[1.5ch] grid h-[1em] grid-cols-8 text-center leading-none">
       <p>A</p>
       <p>B</p>
       <p>C</p>
