@@ -13,6 +13,7 @@ import ButtonArea from "./components/ButtonArea";
 import { STARTING_POSITION } from "./lib/constants";
 
 function App() {
+  const [turn, setTurn] = useState<"white" | "black" | "none">("none");
   const [position, setPosition] = useState<PositionDataType>(STARTING_POSITION);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
 
@@ -63,6 +64,7 @@ function App() {
       allowDragOffBoard: true,
       showAnimations: false,
       showNotation: false,
+      boardStyle: { border: "2px solid black" },
       lightSquareStyle: { backgroundColor: "#FFFFFF" },
       darkSquareStyle: { backgroundColor: "#D3D3D3" },
     }),
@@ -77,10 +79,12 @@ function App() {
           <DragMenu />
 
           {/* Chessboard Area */}
-          <BoardArea snapshotRef={snapshotRef} />
+          <BoardArea snapshotRef={snapshotRef} turn={turn} />
 
           {/* Instructions and Buttons  */}
           <ButtonArea
+            turn={turn}
+            setTurn={setTurn}
             snapshotRef={snapshotRef}
             setOrientation={setOrientation}
             setPosition={setPosition}

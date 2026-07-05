@@ -3,19 +3,33 @@ import { Chessboard } from "react-chessboard";
 
 import NumberNotations from "./NumberNotations";
 import LetterNotations from "./LetterNotations";
+import { cn } from "../lib/utils";
 
 const BoardArea: React.FC<{
   snapshotRef: React.RefObject<HTMLDivElement | null>;
-}> = ({ snapshotRef }) => {
+  turn: "white" | "black" | "none";
+}> = ({ snapshotRef, turn }) => {
   return (
     <div className="bg-neutral-800 p-2 text-[24px] sm:text-[27px] md:text-[31px] lg:col-span-4 lg:h-fit lg:text-[36px] xl:text-[42px] 2xl:text-[48px]">
       <div ref={snapshotRef}>
-        <div className="relative bg-white ps-[1.1em] pb-[1.1em]">
+        <div className="relative bg-white p-[0.1em] px-[1.1em] pb-[1.1em]">
           {/* Number Notations */}
           <NumberNotations />
 
           {/* Chessboard */}
           <Chessboard />
+
+          {/* Turn Indicator */}
+          {turn !== "none" && (
+            <div className="absolute top-0 right-0 bottom-0 mt-[0.1em] mb-[1.1em] grid w-[1.1em] grid-cols-1 grid-rows-8 items-center justify-items-center">
+              <div
+                className={cn(
+                  "size-[0.7em] rounded-full border-2 border-white bg-black",
+                  turn === "white" && "border-black bg-white",
+                )}
+              ></div>
+            </div>
+          )}
 
           {/* Letter Notations */}
           <LetterNotations />

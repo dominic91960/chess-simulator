@@ -9,3 +9,5 @@ export const STARTING_POSITION = fenStringToPositionObject(
   8,
   8,
 );
+
+export const turnValues = ["white", "black", "none"];

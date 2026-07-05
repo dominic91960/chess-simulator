@@ -6,14 +6,19 @@ import { FiDownload } from "react-icons/fi";
 
 import { toJpeg } from "html-to-image";
 import type { PositionDataType } from "react-chessboard";
+import TurnIndicatorSelect from "./TurnIndicatorSelect";
 
 interface ButtonAreaProps {
+  turn: "white" | "black" | "none";
+  setTurn: React.Dispatch<React.SetStateAction<"white" | "black" | "none">>;
   snapshotRef: React.RefObject<HTMLDivElement | null>;
   setOrientation: React.Dispatch<React.SetStateAction<"white" | "black">>;
   setPosition: React.Dispatch<React.SetStateAction<PositionDataType>>;
 }
 
 const ButtonArea: React.FC<ButtonAreaProps> = ({
+  turn,
+  setTurn,
   snapshotRef,
   setOrientation,
   setPosition,
@@ -45,8 +50,12 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
   };
 
   return (
-    <aside className="sticky top-3 sm:top-3 md:top-4 lg:top-4 lg:h-fit xl:top-5 2xl:top-6">
+    <aside className="sticky top-3 flex flex-col gap-2 sm:top-3 md:top-4 lg:top-4 lg:h-fit xl:top-5 2xl:top-6">
+      {/* Turn Select */}
+      <TurnIndicatorSelect turn={turn} setTurn={setTurn} />
+
       <div className="flex flex-col gap-2 bg-neutral-800 p-2">
+        {/* Clear Button */}
         <button
           type="button"
           className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
@@ -55,6 +64,7 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
           Clear Board <FiTrash className="text-[1.1em]" />
         </button>
 
+        {/* Flip Button */}
         <button
           type="button"
           className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
@@ -67,6 +77,7 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
           Flip Board <TbTransferVertical className="text-[1.2em]" />
         </button>
 
+        {/* Export Button */}
         <button
           type="button"
           className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20 disabled:pointer-events-none disabled:opacity-50"
