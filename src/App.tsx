@@ -63,8 +63,8 @@ function App() {
       allowDragOffBoard: true,
       showAnimations: false,
       showNotation: false,
-      lightSquareStyle: { backgroundColor: "#CCCCCC" },
-      darkSquareStyle: { backgroundColor: "#333333" },
+      lightSquareStyle: { backgroundColor: "#FFFFFF" },
+      darkSquareStyle: { backgroundColor: "#D3D3D3" },
     }),
     [handlePieceDrop, orientation, position, removePiece],
   );
