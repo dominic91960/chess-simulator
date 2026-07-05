@@ -68,10 +68,10 @@ const ButtonArea: React.FC<ButtonAreaProps> = ({
         </button>
 
         <button
-          disabled={isExporting}
-          className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20"
-          onClick={exportPng}
           type="button"
+          className="transition-default flex w-full items-center justify-between bg-white/10 px-[1em] py-[0.5em] text-white hover:bg-white/20 disabled:pointer-events-none disabled:opacity-50"
+          onClick={exportPng}
+          disabled={isExporting}
         >
           {isExporting ? "Rendering…" : "Export JPEG"}{" "}
           <FiDownload className="text-[1.1em]" />
