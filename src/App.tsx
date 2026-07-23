@@ -84,10 +84,7 @@ function App() {
       squareStyles: Object.fromEntries(
         Array.from(highlightedSquares).map((square) => [
           square,
-          {
-            backgroundImage:
-              "repeating-linear-gradient(45deg, rgba(0,0,0,0.4) 0 8px, transparent 8px 24px)",
-          },
+          { border: "4px solid black" },
         ]),
       ),
     }),
