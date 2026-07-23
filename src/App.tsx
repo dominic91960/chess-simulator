@@ -16,6 +16,9 @@ function App() {
   const [turn, setTurn] = useState<"white" | "black" | "none">("none");
   const [position, setPosition] = useState<PositionDataType>(STARTING_POSITION);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
+  const [highlightedSquares, setHighlightedSquares] = useState<Set<string>>(
+    new Set(),
+  );
 
   const snapshotRef = useRef<HTMLDivElement>(null);
 
@@ -59,16 +62,36 @@ function App() {
       position,
       boardOrientation: orientation,
       onPieceDrop: handlePieceDrop,
+      onSquareClick: ({ square }) => {
+        setHighlightedSquares((current) => {
+          const next = new Set(current);
+          if (next.has(square)) {
+            next.delete(square);
+          } else {
+            next.add(square);
+          }
+          return next;
+        });
+      },
       onSquareRightClick: ({ square }) => removePiece(square),
       allowDragging: true,
       allowDragOffBoard: true,
       showAnimations: false,
       showNotation: false,
-      boardStyle: { border: "2px solid black" },
+      boardStyle: { border: "6px solid black" },
       lightSquareStyle: { backgroundColor: "#FFFFFF" },
       darkSquareStyle: { backgroundColor: "#D3D3D3" },
+      squareStyles: Object.fromEntries(
+        Array.from(highlightedSquares).map((square) => [
+          square,
+          {
+            backgroundImage:
+              "repeating-linear-gradient(45deg, rgba(0,0,0,0.4) 0 8px, transparent 8px 24px)",
+          },
+        ]),
+      ),
     }),
-    [handlePieceDrop, orientation, position, removePiece],
+    [handlePieceDrop, orientation, position, removePiece, highlightedSquares],
   );
 
   return (
