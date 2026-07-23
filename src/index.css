@@ -10,6 +10,11 @@
     scrollbar-width: thin;
   }
 
+  ::selection {
+    background-color: var(--color-neutral-900);
+    color: white;
+  }
+
   body {
     background-color: var(--color-neutral-900);
   }
